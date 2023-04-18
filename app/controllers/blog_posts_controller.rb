@@ -6,7 +6,6 @@ class BlogPostsController < ApplicationController
   before_action :set_blog_post, only: %i[show edit update destroy]
 
   def index
-    p user_signed_in?
     @blog_posts = user_signed_in? ? BlogPost.sorted : BlogPost.sorted.published
   end
 
@@ -50,6 +49,6 @@ class BlogPostsController < ApplicationController
   end
 
   def blog_post_params
-    params.require(:blog_post).permit(:title, :body, :published_at)
+    params.require(:blog_post).permit(:title, :content, :published_at)
   end
 end
